@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Producto</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 40px; }
+        h2 { text-align: center; }
+        .volver {
+            display: block;
+            width: 200px;
+            margin: 30px auto 0;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+        .volver:hover { background-color: #218838; }
+        #productoInfo { display: none; margin-top: 20px; border: 1px solid #ccc; padding: 15px; border-radius: 6px; }
+        label { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>Eliminar Producto</h2>
+    <form id="buscarForm">
+        <div id="mensajeExito" style="display:none;color:green;font-weight:bold;margin-bottom:10px;"></div>
+        <label for="buscarId">ID del producto:</label><br>
+        <input type="number" id="buscarId" required>
+        <button type="button" onclick="buscarProducto()">Buscar</button>
+    </form>
+
+    <div id="productoInfo">
+        <p><b>ID:</b> <span id="infoId"></span></p>
+        <p><b>Nombre:</b> <span id="infoNombre"></span></p>
+        <p><b>Descripción:</b> <span id="infoDescripcion"></span></p>
+        <p><b>Precio:</b> $<span id="infoPrecio"></span></p>
+        <button type="button" onclick="eliminarProducto()" style="background-color:#dc3545;color:white;padding:10px 20px;border:none;border-radius:6px;">Eliminar</button>
+    </div>
+
+    <a href="../menu.html" class="volver">Volver al menú</a>
+
+    <script src="../controllers/eliminarProducto.js"></script>
+</body>
+</html>
