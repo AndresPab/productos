@@ -55,5 +55,28 @@ app.delete('/api/productos/:id', (req, res) => {
   });
 });
 
+app.post('/api/login', (req, res) => {
+  const { username, password } = req.body;
+  const sql = 'SELECT * FROM usuarios WHERE username = ? ';
+
+  db.query(sql, [username], async (err, results) => {
+    if (err){
+      console.error('Error en login:', err);
+      return res.status(500).send('Error del servidor');
+    }
+
+    if (results.length === 0) {
+      return res.status(401).json({ success: false, message: 'Usuario incorrecto' });
+    }
+    const usuario = results[0];
+  const contraseniaValida = await bcrypt.compare(password, usuario.password);
+
+    if (!contraseniaValida) {
+      res.json({success: true, token: 'token123', username});
+    } else {
+      res.status(401).json({ success: false, message: 'Contraseña incorrecta' });
+    }
+  });
+});
 
 
